@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -39,8 +38,8 @@ func generateRuneKey(word string) string {
 	return keyBuilder.String()
 }
 
-func main() {
-	strs := []string{"act", "pots", "tops", "cat", "stop", "hat"}
+// func main() {
+// 	strs := []string{"act", "pots", "tops", "cat", "stop", "hat"}
 
-	fmt.Println(groupAnagrams(strs))
-}
+// 	fmt.Println(groupAnagrams(strs))
+// }
