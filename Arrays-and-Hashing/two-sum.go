@@ -24,17 +24,17 @@ package main
 // }
 
 // better approach O(n)
-func twoSum(nums []int, target int) [2]int {
-	idxMap := make(map[int]int)
-	for i, num := range nums {
-		complement := target - num
-		if j, found := idxMap[complement]; found {
-			return [2]int{j, i}
-		}
-		idxMap[num] = i
-	}
+func twoSum(nums []int, target int) []int {
+	mapNum := make(map[int]int)
 
-	return [2]int{}
+	for i, n := range nums {
+		diff := target - n
+		if j, found := mapNum[diff]; found && j != i {
+			return []int{i, j}
+		}
+		mapNum[n] = i
+	}
+	return []int{}
 }
 
 // func main() {
