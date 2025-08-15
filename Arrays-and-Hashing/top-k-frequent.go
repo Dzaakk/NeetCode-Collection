@@ -10,13 +10,17 @@ func topKFrequent(nums []int, k int) []int {
 		count[num]++
 	}
 
-	for num, c := range count {
-		freq[c] = append(freq[c], num)
+	for num, cnt := range count {
+		freq[cnt] = append(freq[cnt], num)
+		// fmt.Printf("FREQ = %v\n", freq)
 	}
 
 	res := []int{}
 	for i := len(freq) - 1; i > 0; i-- {
+		// fmt.Printf("I = %v\n", i)
+		// fmt.Printf("FREQ I = %v\n", freq[i])
 		for _, num := range freq[i] {
+			// fmt.Printf("NUM  = %v\n", num)
 			res = append(res, num)
 			if len(res) == k {
 				return res
@@ -32,7 +36,7 @@ func main() {
 	k1 := 2
 	fmt.Println(topKFrequent(nums1, k1))
 
-	nums2 := []int{7, 7}
+	nums2 := []int{7, 7, 5, 6, 8, 9}
 	k2 := 1
 	fmt.Println(topKFrequent(nums2, k2))
 }
