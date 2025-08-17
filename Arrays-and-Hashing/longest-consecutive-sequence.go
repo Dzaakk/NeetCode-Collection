@@ -1,21 +1,46 @@
 package main
 
 func longestConsecutive(nums []int) int {
-	mp := make(map[int]int)
-	res := 0
-
+	numSet := make(map[int]struct{})
 	for _, num := range nums {
-		if mp[num] == 0 {
-			left := mp[num-1]
-			right := mp[num+1]
-			sum := left + right + 1
-			mp[num] = sum
-			mp[num-left] = sum
-			mp[num+right] = sum
-			if sum > res {
-				res = sum
+		numSet[num] = struct{}{}
+	}
+
+	longest := 0
+	for num := range numSet {
+		if _, found := numSet[num-1]; !found {
+			length := 1
+			for {
+				if _, exist := numSet[num+length]; exist {
+					length++
+				} else {
+					break
+				}
+			}
+			if length > longest {
+				longest = length
 			}
 		}
 	}
-	return res
+	return longest
 }
+
+// func longestConsecutive(nums []int) int {
+// 	mp := make(map[int]int)
+// 	res := 0
+
+// 	for _, num := range nums {
+// 		if mp[num] == 0 {
+// 			left := mp[num-1]
+// 			right := mp[num+1]
+// 			sum := left + right + 1
+// 			mp[num] = sum
+// 			mp[num-left] = sum
+// 			mp[num+right] = sum
+// 			if sum > res {
+// 				res = sum
+// 			}
+// 		}
+// 	}
+// 	return res
+// }
