@@ -1,23 +1,33 @@
 package main
 
 // import "fmt"
-
+// 17
 func maxProfit(prices []int) int {
+	if len(prices) == 1 {
+		return 0
+	}
+
 	l, r := 0, 1
 	maxP := 0
 
 	for r < len(prices) {
-		if prices[l] < prices[r] {
-			profit := prices[r] - prices[l]
-			if profit > maxP {
-				maxP = profit
-			}
+		if prices[l] > prices[r] {
+			l++
+			continue
 		} else {
-			l = r
+			maxP = max(maxP, prices[r]-prices[l])
 		}
 		r++
 	}
+
 	return maxP
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 // func main() {
